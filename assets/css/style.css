@@ -1,6 +1,6 @@
 body{
     background-color: gray;
-    background-image: url("/assets/images/grey_wash_wall.png");
+    background-image: url("../images/grey_wash_wall.png");
     height:100%;
 }
 img{

@@ -8,7 +8,9 @@ var userCategories = []
 var arrWorking = []
 
 //Check for locally stored Categories
+
 if (localStorage.getItem("userGifs")){
+  var userStoredVariables = localStorage.getItem("userGifs")
   userCategories = userStoredVariables.split(',');
 }
 //var userStoredVariables = localStorage.getItem("userGifs")

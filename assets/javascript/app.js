@@ -8,16 +8,22 @@ var userCategories = []
 var arrWorking = []
 
 //Check for locally stored Categories
-console.log(localStorage.getItem("userGifs"))
-
 if (localStorage.getItem("userGifs")){
   var userStoredVariables = localStorage.getItem("userGifs")
   userCategories = userStoredVariables.split(',');
 }
-
+//Attach listener to btnSaveCategory
+$("#btnSaveCategory").on("click",function(){
+ 
+  userCategories.push($("#txtCategory").val())
+  localStorage.setItem("userGifs", userCategories)
+  createButtons(defaultCategories.slice(0).concat(userCategories.slice(0)))
+ 
+})
 
 createButtons(defaultCategories.slice(0).concat(userCategories.slice(0)))
 
+//Create buttons for each item in default and user arrays
 function createButtons(array){
 
   $divButtons.empty();
@@ -30,57 +36,13 @@ function createButtons(array){
     newButton.text(array[i])
     newButton.appendTo($divButtons)
   }
-
   $(".js_btnGif").on("click", function(){
 
     getGifs($(this).val())
-    
   
   })
 
-  console.log(array)
-
 }
-
-
-$("#btnSaveCategory").on("click",function(){
- //debugger;
-  userCategories.push($("#txtCategory").val())
-  localStorage.setItem("userGifs", userCategories)
-  createButtons(defaultCategories.slice(0).concat(userCategories.slice(0)))
-  localStorage.getItem("userGifs")
-})
-
-//var string = stringReplaceSpace("  This has a lot of spaces in it  ")
-
-function stringReplaceSpace(myStr){
-  //debugger;
-  myStr = myStr.trim();
-
-  for(var i=0;i< myStr.length;i++){
-    if(myStr.charAt(i) === " "){
-    
-      myStr = myStr.replace(myStr.charAt(i),"+")
-    }
-
-    
-  }
-  return myStr
-
-}
-
-
-
-
-
-
-
-
-
-//console.log(string)
-
-//var gif = "funny+cat"
-
 function getGifs(sGif) {
 
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + sGif + "&api_key=Pi6G0VZE4khvrzUzfcJsdCtObo9Z9tkq&limit=10";
@@ -104,4 +66,18 @@ function getGifs(sGif) {
      }
    })
 
+}
+
+//This function replaces spaces with + for use in the gif lookup
+function stringReplaceSpace(myStr){
+
+  myStr = myStr.trim();
+
+  for(var i=0;i< myStr.length;i++){
+    if(myStr.charAt(i) === " "){
+    
+      myStr = myStr.replace(myStr.charAt(i),"+")
+    }    
+  }
+  return myStr
 }

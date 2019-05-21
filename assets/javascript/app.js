@@ -8,13 +8,15 @@ var userCategories = []
 var arrWorking = []
 
 //Check for locally stored Categories
-var userStoredVariables = localStorage.getItem("userGifs")
+//var userStoredVariables = localStorage.getItem("userGifs")
 
-if(userStoredVariables.length > 0){
 
-  userCategories = userStoredVariables.split(',');
 
-}
+// if(userStoredVariables.length > 0){
+
+//   userCategories = userStoredVariables.split(',');
+
+// }
 
 createButtons(defaultCategories.slice(0).concat(userCategories.slice(0)))
 

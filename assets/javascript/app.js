@@ -8,20 +8,13 @@ var userCategories = []
 var arrWorking = []
 
 //Check for locally stored Categories
+console.log(localStorage.getItem("userGifs"))
 
 if (localStorage.getItem("userGifs")){
   var userStoredVariables = localStorage.getItem("userGifs")
   userCategories = userStoredVariables.split(',');
 }
-//var userStoredVariables = localStorage.getItem("userGifs")
 
-
-
-// if(userStoredVariables.length > 0){
-
-//   userCategories = userStoredVariables.split(',');
-
-// }
 
 createButtons(defaultCategories.slice(0).concat(userCategories.slice(0)))
 
@@ -55,7 +48,7 @@ $("#btnSaveCategory").on("click",function(){
   userCategories.push($("#txtCategory").val())
   localStorage.setItem("userGifs", userCategories)
   createButtons(defaultCategories.slice(0).concat(userCategories.slice(0)))
-  
+  localStorage.getItem("userGifs")
 })
 
 //var string = stringReplaceSpace("  This has a lot of spaces in it  ")

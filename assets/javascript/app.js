@@ -3,11 +3,14 @@ var $divButtons = $("#divButtons")
 var $divGallery = $("#divGallery")
 
 //Declare global variables
-var defaultCategories = ["dilbert","the simpsons"]
+var defaultCategories = ["dilbert","loony toons","scooby doo","the simpsons"]
 var userCategories = []
 var arrWorking = []
 
 //Check for locally stored Categories
+if (localStorage.getItem("userGifs")){
+  userCategories = userStoredVariables.split(',');
+}
 //var userStoredVariables = localStorage.getItem("userGifs")
 
 
@@ -27,7 +30,7 @@ function createButtons(array){
   for(var i =0;i<array.length;i++){
     let myValue = stringReplaceSpace(array[i])
     let newButton = $("<button>")
-    newButton.addClass("btn btn-info text-uppercase js_btnGif")
+    newButton.addClass("btn btn-info m-1 text-uppercase js_btnGif")
     newButton.val(myValue)
     newButton.text(array[i])
     newButton.appendTo($divButtons)

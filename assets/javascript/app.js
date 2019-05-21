@@ -1,39 +1,43 @@
+//Declare jQuery DOM variables for later use
 var $divButtons = $("#divButtons")
+var $divGallery = $("#divGallery")
 
+//Declare global variables
 var defaultCategories = ["dilbert","the simpsons"]
 var userCategories = []
 var arrWorking = []
 
 //Check for locally stored Categories
-
 var userStoredVariables = localStorage.getItem("userGifs")
 
 if(userStoredVariables.length > 0){
 
-  loadUserCategories(userStoredVariables)
-}
-
-//Place locally stored categories into userCategories array
-function loadUserCategories(StoredVariables){
-
-  userCategories = StoredVariables.split(',');
+  userCategories = userStoredVariables.split(',');
 
 }
-
-
 
 createButtons(defaultCategories.slice(0).concat(userCategories.slice(0)))
 
 function createButtons(array){
+
+  $divButtons.empty();
   
   for(var i =0;i<array.length;i++){
     let myValue = stringReplaceSpace(array[i])
     let newButton = $("<button>")
-    newButton.addClass("js_btnGif")
+    newButton.addClass("btn btn-info text-uppercase js_btnGif")
     newButton.val(myValue)
     newButton.text(array[i])
     newButton.appendTo($divButtons)
   }
+
+  $(".js_btnGif").on("click", function(){
+
+    getGifs($(this).val())
+    
+  
+  })
+
   console.log(array)
 
 }
@@ -43,6 +47,7 @@ $("#btnSaveCategory").on("click",function(){
  //debugger;
   userCategories.push($("#txtCategory").val())
   localStorage.setItem("userGifs", userCategories)
+  createButtons(defaultCategories.slice(0).concat(userCategories.slice(0)))
   
 })
 
@@ -69,12 +74,7 @@ function stringReplaceSpace(myStr){
 
 
 
-$(".js_btnGif").on("click", function(){
 
-  getGifs($(this).val())
-  
-
-})
 
 
 //console.log(string)
@@ -88,14 +88,20 @@ function getGifs(sGif) {
   $.ajax({
 
     url: queryURL,
-    method: "GET"
+    method: "GET" //,
+    //header:"Access-Control-Allow-Origin: *"
 
   }).then(function (response) {
     console.log(response)
 
-  })
+     for(var i = 0;i < response.data.length;i++){
+       newCard = $("<div>")
+       newCard.addClass("card")
+       newImage = $("<img>")
+       newImage.attr("src",response.data[i].images.fixed_height_small.url)
+       newImage.appendTo(newCard)
+       newCard.appendTo($divGallery)
+     }
+   })
 
 }
-
-
-

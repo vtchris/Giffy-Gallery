@@ -3,6 +3,12 @@ body{
     background-image: url("../images/grey_wash_wall.png");
     height:100%;
 }
+header{
+    border-bottom: 2px solid #66ffff;
+}
 img{
-    max-width:150px;height:auto;
+    max-width:100%;height:auto;
+}
+.card{
+    cursor:pointer;
 }

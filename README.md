@@ -1,5 +1,8 @@
 <h1><em>Giffy-Gallery</em></h1>
 
+Visit online at:
+https://vtchris.github.io/Giffy-Gallery/
+
 <h2>Technology</h2>
 <ul>
   <li>AJAX</li>

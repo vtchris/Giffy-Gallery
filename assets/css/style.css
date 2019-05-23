@@ -7,8 +7,12 @@ header{
     border-bottom: 2px solid #66ffff;
 }
 img{
-    max-width:100%;height:auto;
+    width:100%;height:auto;
 }
 .card{
     cursor:pointer;
+    width:100%;
+}
+.col-md-2{
+    min-width: 150px;
 }

@@ -111,7 +111,7 @@ function getGifs(sGif) {
 
     for (var i = 0; i < response.data.length; i++) {
       let newCol = $("<div>");
-      newCol.addClass("col d-flex align-items-stretch col-md-2 col-sm-4");
+      newCol.addClass("col col-md-2 col-sm-6 p-2 d-flex align-items-stretch");
       let newCard = $("<div>");
       newCard.addClass("card mb-3");
       newCard.attr("data-state", "still");
@@ -126,9 +126,9 @@ function getGifs(sGif) {
       newBody = $("<div>");
       newBody.addClass("card-body text-center p-1 bg-secondary");
       newImage = $("<img>");
-      newImage.attr("src", response.data[i].images.fixed_width_small_still.url);
-      newImage.attr("data-still", response.data[i].images.fixed_width_small_still.url);
-      newImage.attr("data-animate", response.data[i].images.fixed_width_small.url);
+      newImage.attr("src", response.data[i].images.fixed_width_still.url);
+      newImage.attr("data-still", response.data[i].images.fixed_width_still.url);
+      newImage.attr("data-animate", response.data[i].images.fixed_width.url);
       newImage.appendTo(newBody);
       newBody.appendTo(newCard);
       let newFooter = $("<div>");
